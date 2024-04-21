@@ -1,0 +1,76 @@
+{
+  "cities": [
+    {
+      "cityName": "Sinyang-gun",
+      "country": "Korea (the Democratic People's Republic of)",
+      "countryCode": "KP",
+      "date": "2023-11-06T12:21:26.000Z",
+      "notes": "Yes.",
+      "position": {
+        "lat": "39.232253141714914",
+        "lng": "126.56250000000001"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "San Javier",
+      "country": "Bolivia (Plurinational State of)",
+      "countryCode": "BO",
+      "date": "2024-04-20T11:22:11.068Z",
+      "notes": "",
+      "position": {
+        "lat": "-14.26438308756265",
+        "lng": "-64.68750000000001"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Murillo de Rio Leza",
+      "country": "Spain",
+      "countryCode": "ES",
+      "date": "2024-04-20T11:22:26.107Z",
+      "notes": "",
+      "position": {
+        "lat": "42.391008609205045",
+        "lng": "-2.3510742187500004"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Zdar nad Sazavou",
+      "country": "Czechia",
+      "countryCode": "CZ",
+      "date": "2024-04-20T17:17:33.034Z",
+      "notes": "Me fui a tomar birras",
+      "position": {
+        "lat": "49.55372551347579",
+        "lng": "15.952148437500002"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Baerenthal",
+      "country": "France",
+      "countryCode": "FR",
+      "date": "2024-04-21T13:29:00.964Z",
+      "notes": "Me he cagado",
+      "position": {
+        "lat": "48.980216985374994",
+        "lng": "7.536621093750001"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Bedourie",
+      "country": "Australia",
+      "countryCode": "AU",
+      "date": "2024-04-21T14:03:43.510Z",
+      "notes": "asd",
+      "position": {
+        "lat": "-23.805449612314625",
+        "lng": "138.16406250000003"
+      },
+      "id": 98443205
+    }
+  ]
+}
