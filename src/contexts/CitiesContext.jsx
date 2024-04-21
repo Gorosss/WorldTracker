@@ -6,8 +6,11 @@ import {
   useCallback,
 } from "react";
 
-const BASE_URL = "http://localhost:9000";
 
+import citiesControllers from "../controllers/citiesControllers";
+
+/* const BASE_URL = "http://localhost:9000";
+ */
 const CitiesContext = createContext();
 
 const initialState = {
@@ -71,8 +74,10 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
+        const data = await citiesControllers.getCities();
+       /*  const res = await fetch(`${BASE_URL}/cities`);
+        const data = await res.json(); */
+
         dispatch({ type: "cities/loaded", payload: data });
       } catch {
         dispatch({
@@ -91,8 +96,10 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
+
+        const data = await citiesControllers.getCity(id);
+        /* const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json(); */
         dispatch({ type: "city/loaded", payload: data });
       } catch {
         dispatch({
@@ -108,15 +115,18 @@ function CitiesProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
-      const res = await fetch(`${BASE_URL}/cities`, {
+
+
+      const data = await citiesControllers.createCity(newCity);
+
+      /* const res = await fetch(`${BASE_URL}/cities`, {
         method: "POST",
         body: JSON.stringify(newCity),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const data = await res.json();
-
+      const data = await res.json(); */
       dispatch({ type: "city/created", payload: data });
     } catch {
       dispatch({
@@ -130,9 +140,12 @@ function CitiesProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
+
+      citiesControllers.deleteCity(id);
+
+      /* await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
-      });
+      }); */
 
       dispatch({ type: "city/deleted", payload: id });
     } catch {

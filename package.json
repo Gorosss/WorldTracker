@@ -7,10 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "json-server --watch data/cities.json --port 9000 --delay 500",
-    "server build": "json-server --watch data/cities.json --delay 500"
+    "server": "json-server --watch data/cities.json --port 9000 --delay 500"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.42.5",
+    "dotenv": "^16.4.5",
     "json-server": "^0.17.3",
     "leaflet": "^1.9.3",
     "react": "^18.2.0",

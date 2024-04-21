@@ -46,7 +46,6 @@ function Form() {
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
-          console.log(data);
 
           if (!data.countryCode)
             throw new Error(
@@ -91,7 +90,6 @@ function Form() {
     return <Message message="Start by clicking somewhere on the map" />;
 
   if (geocodingError) return <Message message={geocodingError} />;
-
   return (
     <form
       className={`${styles.form} ${isLoading ? styles.loading : ""}`}
@@ -104,7 +102,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        <span className={styles.flag}><Flag country={city.countryCode} /></span>
+        <span className={styles.flag}><Flag country={countryCode} /></span>
       </div>
 
       <div className={styles.row}>

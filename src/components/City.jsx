@@ -28,7 +28,6 @@ function City() {
 
   const { cityName, countryCode, date, notes } = currentCity;
 
-  console.log(currentCity);
 
   if (isLoading) return <Spinner />;
 
