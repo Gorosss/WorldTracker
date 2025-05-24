@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { CitiesProvider } from "./contexts/CitiesContext";
-import { AuthProvider } from "./contexts/FakeAuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 import CityList from "./components/CityList";
@@ -13,6 +13,7 @@ import SpinnerFullPage from "./components/SpinnerFullPage";
 
 const Homepage = lazy(() => import("./pages/Homepage"));
 const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
 const AppLayout = lazy(() => import("./pages/AppLayout"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
@@ -26,6 +27,7 @@ function App() {
             <Routes>
               <Route index element={<Homepage />} />
               <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
               <Route
                 path="app"
                 element={

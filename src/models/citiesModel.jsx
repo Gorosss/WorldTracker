@@ -1,22 +1,18 @@
-import { createClient } from '@supabase/supabase-js';
-
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+import { supabase } from './supabaseClient.js'
 
 
 class CitiesModel {
     
 
     constructor() {
-        
-        this.supabase = createClient(SUPABASE_URL,
-        SUPABASE_KEY);
+
+        this.supabase = supabase;
     }
 
-    async getCities() {
+    async getCities(userId) {
     
         try {
-            const res = await this.supabase.from('cities').select('*');
+            const res = await this.supabase.from('cities').select('*').eq('userId', userId);
 
             if (res.error) {
                 throw res.error;
@@ -45,9 +41,9 @@ class CitiesModel {
         }
     }
 
-    async createCity(city) {
+    async createCity(city, userId) {
         try {
-            const res = await this.supabase.from('cities').insert([city]).select();
+            const res = await this.supabase.from('cities').insert([{ ...city, userId }]).select();
 
 
             if (res.error) {

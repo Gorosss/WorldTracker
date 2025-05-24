@@ -1,4 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
+import SignUserController from "../controllers/signUserController";
+
 
 const AuthContext = createContext();
 
@@ -17,31 +19,46 @@ function reducer(state, action) {
       throw new Error("Unknown action");
   }
 }
-
-const FAKE_USER = {
+// This is a fake user for development purposes
+/* const FAKE_USER = {
   name: "Admin",
   email: "admin@admin.com",
   password: "12345",
   avatar: "https://i.pravatar.cc/100?u=ah",
 };
-
+ */
 function AuthProvider({ children }) {
   const [{ user, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
-  function login(email, password) {
-    if (email === FAKE_USER.email && password === FAKE_USER.password)
-      dispatch({ type: "login", payload: FAKE_USER });
+  const signUserController = new SignUserController();
+
+  async function login(email, password) {
+    try {
+      const user = await signUserController.signIn(email, password);
+      dispatch({ type: "login", payload: user });
+    } catch (error) {
+      return ("Login failed");
+    }
   }
 
   function logout() {
     dispatch({ type: "logout" });
   }
 
+  async function signUp(name, email, password) {
+    try {
+      const user = await signUserController.signUp(name, email, password);
+      dispatch({ type: "login", payload: user });
+    } catch (error) {
+      return ("Sign up failed");
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout, signUp }}>
       {children}
     </AuthContext.Provider>
   );

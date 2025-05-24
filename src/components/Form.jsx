@@ -13,6 +13,7 @@ import Message from "./Message";
 import Spinner from "./Spinner";
 import { useCities } from "../contexts/CitiesContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 import Flag from "react-flagkit";
 
@@ -32,6 +33,7 @@ function Form() {
   const [notes, setNotes] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
+  const { user } = useAuth();
 
   useEffect(
     function () {
@@ -80,7 +82,7 @@ function Form() {
       position: { lat, lng },
     };
 
-    await createCity(newCity);
+    await createCity(newCity, user.id);
     navigate("/app/cities");
   }
 

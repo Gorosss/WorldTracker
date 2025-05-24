@@ -7,7 +7,10 @@ import {
 } from "react";
 
 
-import citiesControllers from "../controllers/citiesControllers";
+import CitiesControllers from "../controllers/citiesControllers";
+
+
+import { useAuth } from "./AuthContext";
 
 /* const BASE_URL = "http://localhost:9000";
  */
@@ -69,12 +72,19 @@ function CitiesProvider({ children }) {
     initialState
   );
 
+  const { user } = useAuth();
+
   useEffect(function () {
+    if (!user?.id) return;
+
     async function fetchCities() {
       dispatch({ type: "loading" });
 
       try {
-        const data = await citiesControllers.getCities();
+        const citiesControllers = new CitiesControllers();
+
+        const data = await citiesControllers.getCities(user?.id);
+
        /*  const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json(); */
 
@@ -87,7 +97,7 @@ function CitiesProvider({ children }) {
       }
     }
     fetchCities();
-  }, []);
+  }, [user?.id]);
 
   const getCity = useCallback(
     async function getCity(id) {
@@ -96,6 +106,7 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
+        const citiesControllers = new CitiesControllers();
 
         const data = await citiesControllers.getCity(id);
         /* const res = await fetch(`${BASE_URL}/cities/${id}`);
@@ -111,14 +122,14 @@ function CitiesProvider({ children }) {
     [currentCity.id]
   );
 
-  async function createCity(newCity) {
+  async function createCity(newCity, userId) {
+
     dispatch({ type: "loading" });
 
     try {
+      const citiesControllers = new CitiesControllers();
 
-
-      const data = await citiesControllers.createCity(newCity);
-
+      const data = await citiesControllers.createCity(newCity, userId);
       /* const res = await fetch(`${BASE_URL}/cities`, {
         method: "POST",
         body: JSON.stringify(newCity),
@@ -140,6 +151,7 @@ function CitiesProvider({ children }) {
     dispatch({ type: "loading" });
 
     try {
+      const citiesControllers = new CitiesControllers();
 
       citiesControllers.deleteCity(id);
 
